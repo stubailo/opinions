@@ -27,7 +27,18 @@
 </template>
 
 <template name="topicPage">
-  <h1>{{name}}</h1>
+  <div class="row">
+    <div class="col-md-4">
+      <h1>{{name}}</h1>
 
-  {{> opinions topicId=_id}}
+      <p>A future topic description field would go here.</p>
+
+      <p>{{numOpinions}} {{pluralize "opinion" numOpinions}}
+        posted on this topic.</p>
+    </div>
+
+    <div class="col-md-8">
+      {{> opinions topicId=_id}}
+    </div>
+  </div>
 </template>

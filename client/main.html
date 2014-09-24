@@ -2,15 +2,18 @@
   <title>opinions</title>
 </head>
 
-<body>
+<template name="layout">
   {{> loginButtons}}
-</body>
+
+  <div class="container">
+    {{> yield}}
+  </div>
+</template>
 
 <template name="home">
   <h1>Opinions</h1>
 
   {{> newTopic}}
-  {{> newOpinion}}
 
   {{> topics}}
 </template>

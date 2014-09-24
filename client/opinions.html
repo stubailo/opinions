@@ -1,6 +1,4 @@
 <template name="opinions">
-  <h3>Opinions for {{topicId}}</h3>
-
   {{#each opinions topicId}}
     {{> opinionListItem}}
   {{/each}}
@@ -9,19 +7,44 @@
 </template>
 
 <template name="opinionListItem">
-  <h4>Opinion</h4>
-  {{content}}
+  <div class="opinion">
+    <div class="row">
+      <div class="col-md-2">
+        {{> pointsWidget}}
+      </div>
+      <div class="col-md-10">
+        <h4>{{createdByUsername}}, {{calendarize createdAt}}</h4>
+        {{#markdown}}{{content}}{{/markdown}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="pointsWidget">
+  {{numPoints}} {{pluralize "point" numPoints}}
+
+  <div class="btn-group">
+    <button class="btn {{#if upvoted}}btn-success{{else}}btn-default{{/if}} btn-sm" data-action="upvote">
+      <span class="glyphicon glyphicon-plus"></span></button>
+    <button class="btn {{#if downvoted}}btn-danger{{else}}btn-default{{/if}} btn-sm" data-action="downvote">
+      <span class="glyphicon glyphicon-minus"></span></button>
+  </div>
 </template>
 
 <template name="newOpinion">
-  <form>
-    <label>Content</label>
-    <textarea name="content"></textarea>
+  <form role="form">
+    <h3>Post a new Opinion</h3>
 
-    <input type="submit" value="Save" />
+    <div class="form-group">
+      <label class="hidden" for="content">Content</label>
+      <textarea name="content" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-default">Save</button>
 
     {{#if formError}}
       <div class="form-error">{{messageFor formError}}</div>
     {{/if}}
   </form>
 </template>
+

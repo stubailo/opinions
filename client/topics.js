@@ -36,3 +36,9 @@ Template.topics.helpers({
     return Topics.find();
   }
 });
+
+Template.topicPage.helpers({
+  numOpinions: function () {
+    return Opinions.find({topicId: this._id}).count();
+  }
+});
