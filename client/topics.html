@@ -1,0 +1,33 @@
+<template name="newTopic">
+  <h2>New Topic</h2>
+  <form>
+    <label>Name</label>
+    <input name="name" type="text" />
+
+    <label>Tags</label>
+    <input name="tags" type="text" />
+
+    <input type="submit" value="Save" />
+
+    {{#if formError}}
+      <div class="form-error">{{messageFor formError}}</div>
+    {{/if}}
+  </form>
+</template>
+
+<template name="topics">
+  {{#each topics}}
+    {{> topicListItem}}
+  {{/each}}
+</template>
+
+<template name="topicListItem">
+  <h3>{{name}}</h3>
+  <p>{{tags}}</p>
+</template>
+
+<template name="topicPage">
+  <h1>{{name}}</h1>
+
+  {{> opinions topicId=_id}}
+</template>

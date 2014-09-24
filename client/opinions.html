@@ -1,0 +1,27 @@
+<template name="opinions">
+  <h3>Opinions for {{topicId}}</h3>
+
+  {{#each opinions topicId}}
+    {{> opinionListItem}}
+  {{/each}}
+
+  {{> newOpinion topicId=topicId}}
+</template>
+
+<template name="opinionListItem">
+  <h4>Opinion</h4>
+  {{content}}
+</template>
+
+<template name="newOpinion">
+  <form>
+    <label>Content</label>
+    <textarea name="content"></textarea>
+
+    <input type="submit" value="Save" />
+
+    {{#if formError}}
+      <div class="form-error">{{messageFor formError}}</div>
+    {{/if}}
+  </form>
+</template>
